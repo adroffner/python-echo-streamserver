@@ -19,11 +19,10 @@ from pprint import pformat
 
 # Echo StreamServer Settings
 # ======================================================================
-from echo.settings import ECHO_HOST, ECHO_VERSION, _ECHO_API_KEY, _ECHO_API_SECRET
+from echo.settings import ECHO_HOST, ECHO_VERSION
+from echo.settings import _ECHO_API_KEY, _ECHO_API_SECRET
 if not (ECHO_HOST and ECHO_VERSION):
     raise ValueError("echo.settings: Undefined Echo HOST or VERSION code.")
-if not (_ECHO_API_KEY and _ECHO_API_SECRET):
-    logging.warn("echo.settings: Missing default account API_KEY or API_SECRET.")
 
 # Use ECHO_TIMEOUT (seconds) unless there is an application-level timeout already.
 import socket
@@ -62,7 +61,8 @@ class Account(object):
     def __repr__(self):
         return "(StreamServer Account[%s] %s)" % (self._auth_code, self._appkey)
 
-default_account = Account(_ECHO_API_KEY, _ECHO_API_SECRET, Account.OAuth2)
+default_login = Account.BasicAuth if '' == _ECHO_API_SECRET else Account.OAuth2
+default_account = Account(_ECHO_API_KEY, _ECHO_API_SECRET, default_login)
 
 # OAuth2 Header: Authenticate using 2-Legged OAuth.
 # ======================================================================
