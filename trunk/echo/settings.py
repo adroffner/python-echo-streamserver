@@ -15,6 +15,6 @@ ECHO_TIMEOUT = 5 # seconds
 
 # Echo StreamServer Account
 # ======================================================================
-_ECHO_API_KEY = 'dev.advance-digital'
-_ECHO_API_SECRET = 'acbbae5e041f8471d70fc00c6b3dc980'
+_ECHO_API_KEY = ''
+_ECHO_API_SECRET = ''
 
