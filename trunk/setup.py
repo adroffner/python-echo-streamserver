@@ -11,8 +11,11 @@
 #
 #% ./setup.py bdist_rpm --python='/usr/bin/python2.6'
 # ======================================================================
-
-from distutils.core import setup
+try:
+    # Allow Python eggs cmd: bdist_egg
+    from setuptools import setup
+except ImportError:
+    from distutils.core import setup
 from echo import __version__
 
 setup(name='python-echo-streamserver',
