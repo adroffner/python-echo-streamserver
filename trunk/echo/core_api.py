@@ -216,7 +216,8 @@ class EchoClient(object):
                             is_json=is_json, account=self._account)
 
     def __str__(self):
-        return "EchoClient: %s" % str(self._account)
+        return "%s.%s: %s" % (self.__class__.__module__, self.__class__.__name__,
+                              str(self._account))
 
     def __repr__(self):
         return str(self)
