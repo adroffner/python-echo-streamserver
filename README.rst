@@ -14,7 +14,7 @@ The *function* interface provides each **API** as a simple *module* or *package*
     from echo import items, StreamServerError
 
     try:
-        n = items.count("scope:http//example.com/*")
+        n = items.count("scope:http//example.com/\*")
         print "EQL Count: %d" % n
     except StreamServerError, e:
         print "Error: %s" % str(e)
@@ -67,7 +67,7 @@ The **Items API** supports **MUX**, or *multiplexed* requests. Several **count**
     from echo.items.mux_api import MuxRequest
 
     # EQL Query String
-    query_eql = "scope:http://www.example.com/*"
+    query_eql = "scope:http://www.example.com/\*"
 
     # Search Query (default)
     search = MuxRequest(query_eql)
