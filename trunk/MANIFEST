@@ -1,3 +1,5 @@
+MANIFEST
+README.rst
 echo/__init__.py
 echo/core_api.py
 echo/oauth2_headers.py
