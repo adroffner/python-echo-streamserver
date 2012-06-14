@@ -14,7 +14,7 @@ Send an EQL text string to Stream Server and display the results.
 EQL> url:http://example.com/index.html
 
 Prompts:
-EQL>   "This prompt means execute a search."
+SEARCH>   "This prompt means execute a search."
 COUNT> "This prompt means execute a count."
 
 Shell Commands
