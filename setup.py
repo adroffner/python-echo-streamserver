@@ -22,15 +22,29 @@ setup(name='python-echo-streamserver',
       version=__version__,
       license='PSF Licensed',
       description='Echo StreamServer API Client',
-      long_description="""Echo StreamServer API
-This is a Python version of the Echo StreamServer API.
-http://aboutecho.com/developers/index.html
->>> import echo
+      long_description="""
+Echo StreamServer API
+=====================
+
+This is a Python version of the Echo StreamServer API. See the Echo_ Documentation.
+
+.. _Echo: http://aboutecho.com/developers/index.html
 """,
       author='Andrew Droffner',
-      author_email='adroffne@advance.net',
+      author_email='adroffner@gmail.com',
       url='http://code.google.com/p/python-echo-streamserver/',
       packages=['echo', 'echo.feeds', 'echo.items', 'echo.eql'],
       scripts=['scripts/eql_shell.py'],
+      platform='Python 2.5, 2.6, 2.7',
+      classifiers=[
+          'Development Status :: 5 - Production/Stable',
+          'Intended Audience :: Developers',
+          'License :: OSI Approved :: Python Software Foundation License',
+          'Natural Language :: English',
+          'Operating System :: OS Independent',
+          'Programming Language :: Python :: 2.5',
+          'Programming Language :: Python :: 2.6',
+          'Programming Language :: Python :: 2.7',
+          ],
      )
 
