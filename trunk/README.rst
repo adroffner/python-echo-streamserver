@@ -18,16 +18,14 @@ The *function* interface provides each **API** as a simple *module* or *package*
         print "EQL Count: %d" % n
     except StreamServerError, e:
         print "Error: %s" % str(e)
-::
 
 Default Account
 ---------------
 
-The **Default Account** is part of the **echo.settings** module. Set the **Echo** _appkey_ and _secret_ Account_ codes there.
+The **Default Account** is part of the **echo.settings** module. Set the **Echo** *appkey* and *secret* Account_ codes there.
 
 ::
     /usr/lib/python2.x/site-packages/echo/settings.py
-::
 
 Client Interface
 ================
@@ -45,7 +43,6 @@ The **Client** interface provides each **API** as a class *instance*. The **Clie
         print "KVS: %r" % v
     except StreamServerError, e:
         print "Error: %s" % str(e)
-::
 
 Account Objects
 ===============
@@ -59,7 +56,6 @@ Each **Client** *instance* can use an **Account** object to contact **Echo**. Th
     other_account = Account('test.echoenabled.com', '', Account.BasicAuth)
 
     client = feeds.Client(account=other_account)
-::
 
 MUX Requests
 ============
@@ -84,7 +80,6 @@ The **Items API** supports **MUX**, or *multiplexed* requests. Several **count**
 
     # Send Mux API requests.
     r = items.mux(requests)
-::
 
 .. _Developers: http://aboutecho.com/developers/index.html
 .. _Account: http://wiki.aboutecho.com/w/page/36051644/Get%20Echo%20Test%20API%20Key
