@@ -30,6 +30,7 @@ setup(name='python-echo-streamserver',
       author='Andrew Droffner',
       author_email='adroffner@gmail.com',
       url='http://code.google.com/p/python-echo-streamserver/',
+      download_url='https://code.google.com/p/python-echo-streamserver/downloads/list',
       packages=['echo', 'echo.feeds', 'echo.items', 'echo.eql'],
       scripts=['scripts/eql_shell.py'],
       classifiers=[
