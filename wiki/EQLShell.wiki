@@ -60,7 +60,7 @@ Sometimes, an *identityURL* is _not found_ by the *Users API*. This results in a
 
 {{{
 SEARCH> Users
-USERS> http://connect-uat.nj.com/user/nobody/index.html
+USERS> http://www.example.com/user/nobody/index.html
 ERROR:root:[HTTP 404] users/get API Error
 {}
 USERS> quit
