@@ -9,15 +9,13 @@ Function Interface
 
 The *function* interface provides each **API** as a simple *module* or *package*. The **API** uses the **Default Account** to contact **Echo**. For example, the **Items API** is **echo.items** and has the **REST API** methods.
 
-::
-    # Items API: Count EQL Query
-    from echo import items, StreamServerError
-
-    try:
-        n = items.count("scope:http//example.com/\*")
-        print "EQL Count: %d" % n
-    except StreamServerError, e:
-        print "Error: %s" % str(e)
+>>> # Items API: Count EQL Query
+>>> from echo import items, StreamServerError
+>>> try:
+>>>     n = items.count("scope:http//example.com/\*")
+>>>     print "EQL Count: %d" % n
+>>> except StreamServerError, e:
+>>>     print "Error: %s" % str(e)
 
 Default Account
 ---------------
@@ -32,54 +30,43 @@ Client Interface
 
 The **Client** interface provides each **API** as a class *instance*. The **Client** uses an **Account** object to contact **Echo**, or the default. For example, the **Key-Value Store API** is **echo.kvs.Client** and has the **KVS API** methods.
 
-::
-    # KVS Client API: Get a value for the key 'sample'.
-    from echo import kvs, StreamServerError
-
-    # Create a KVS client using the default account.
-    client = kvs.Client()
-    try:
-        v = client.get('sample')
-        print "KVS: %r" % v
-    except StreamServerError, e:
-        print "Error: %s" % str(e)
+>>> # KVS Client API: Get a value for the key 'sample'.
+>>> from echo import kvs, StreamServerError
+>>> # Create a KVS client using the default account.
+>>> client = kvs.Client()
+>>> try:
+>>>     v = client.get('sample')
+>>>     print "KVS: %r" % v
+>>> except StreamServerError, e:
+>>>     print "Error: %s" % str(e)
 
 Account Objects
 ===============
 
 Each **Client** *instance* can use an **Account** object to contact **Echo**. This is required to support *multiple* **Echo** accounts.
 
-::
-    from echo import feeds, Account
-
-    # Non-default account: Login Account.BasicAuth with no secret
-    other_account = Account('test.echoenabled.com', '', Account.BasicAuth)
-
-    client = feeds.Client(account=other_account)
+>>> from echo import feeds, Account
+>>> # Non-default account: Login Account.BasicAuth with no secret
+>>> other_account = Account('test.echoenabled.com', '', Account.BasicAuth)
+>>> client = feeds.Client(account=other_account)
 
 MUX Requests
 ============
 
 The **Items API** supports **MUX**, or *multiplexed* requests. Several **count** and **search** requests can be combined into one **REST** call. The **items.mux** method sends a list of **MuxRequest** objects to **Echo**. See the **Echo** mux_ method documentation for the output format.
 
-::
-    from echo import items
-    from echo.items.mux_api import MuxRequest
-
-    # EQL Query String
-    query_eql = "scope:http://www.example.com/\*"
-
-    # Search Query (default)
-    search = MuxRequest(query_eql)
-
-    # Count Query
-    count = MuxRequest(query_eql, api_method='count')
-
-    # Form list of them for Mux API.
-    requests = [ search, count ]
-
-    # Send Mux API requests.
-    r = items.mux(requests)
+>>> from echo import items
+>>> from echo.items.mux_api import MuxRequest
+>>> # EQL Query String
+>>> query_eql = "scope:http://www.example.com/\*"
+>>> # Search Query (default)
+>>> search = MuxRequest(query_eql)
+>>> # Count Query
+>>> count = MuxRequest(query_eql, api_method='count')
+>>> # Form list of them for Mux API.
+>>> requests = [ search, count ]
+>>> # Send Mux API requests.
+>>> r = items.mux(requests)
 
 .. _Developers: http://aboutecho.com/developers/index.html
 .. _Account: http://wiki.aboutecho.com/w/page/36051644/Get%20Echo%20Test%20API%20Key
