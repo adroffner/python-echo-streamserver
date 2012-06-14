@@ -18,18 +18,15 @@ except ImportError:
     from distutils.core import setup
 from echo import __version__
 
+readme = open('README.rst', 'r')
+README_TEXT = readme.read()
+readme.close()
+
 setup(name='python-echo-streamserver',
       version=__version__,
       license='PSF Licensed',
       description='Echo StreamServer API Client',
-      long_description="""
-Echo StreamServer API
-=====================
-
-This is a Python version of the Echo StreamServer API. See the Echo_ Documentation.
-
-.. _Echo: http://aboutecho.com/developers/index.html
-""",
+      long_description=README_TEXT,
       author='Andrew Droffner',
       author_email='adroffner@gmail.com',
       url='http://code.google.com/p/python-echo-streamserver/',
