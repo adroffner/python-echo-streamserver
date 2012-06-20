@@ -7,7 +7,7 @@ The *EQL Shell* is a _command line_ script to send [http://wiki.aboutecho.com/Ec
 {{{
 $ /usr/bin/eql_shell
 
-Echo Query Language Shell (echo.items version '0.72')
+Echo Query Language Shell (echo.items version '0.73')
 Account: (StreamServer Account[Basic] test.echoenabled.com)
 
 Send an EQL text string to Stream Server and display the results.
