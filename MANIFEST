@@ -12,6 +12,6 @@ echo/items/__init__.py
 echo/items/mux_api.py
 echo/kvs.py
 echo/users.py
-scripts/eql_shell.py
+scripts/eql_shell
 setup.cfg
 setup.py
