@@ -12,7 +12,7 @@ Most API methods raise the echo.StreamServerError exception.
 This indicates a server-side error, or malformed request.
 """
 
-__version__ = "0.72"
+__version__ = "0.73"
 __author__ = "Andrew Droffner"
 
 # Import Public APIs: modules and packages
