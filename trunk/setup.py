@@ -32,7 +32,7 @@ setup(name='python-echo-streamserver',
       url='http://code.google.com/p/python-echo-streamserver/',
       download_url='https://code.google.com/p/python-echo-streamserver/downloads/list',
       packages=['echo', 'echo.feeds', 'echo.items', 'echo.eql'],
-      scripts=['scripts/eql_shell.py'],
+      scripts=['scripts/eql_shell'],
       classifiers=[
           'Development Status :: 5 - Production/Stable',
           'Intended Audience :: Developers',
