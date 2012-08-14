@@ -221,13 +221,15 @@ class UserRolesFilter(QueryFilter):
         super(UserRolesFilter, self).__init__('user.roles', filter_values=filter_values,
                                          allowable_values=ROLES_FILTERS)
 
+USER_STATE_FILTERS = [ 'Untouched', 'ModeratorDeleted', 'ModeratorBanned',
+                       'ModeratorApproved' ]
 class UserStateFilter(QueryFilter):
     """ Searches for the items owned by users with a given state.
     By default, if this parameter is skipped, items are returned regardless of the user state.
     """
     def __init__(self, filter_values=[]):
         super(UserStateFilter, self).__init__('user.state', filter_values=filter_values,
-                                              allowable_values=STATE_FILTERS)
+                                              allowable_values=USER_STATE_FILTERS)
 
 # ======================================================================
 # Children Depth Filter
