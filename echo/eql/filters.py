@@ -167,6 +167,30 @@ class MarkersFilter(QueryFilter):
                                          allowable_values=MARKERS_FILTERS)
 
 # ======================================================================
+# Safe HTML Filter
+# ======================================================================
+
+SAFE_HTML_FILTERS = [ 'aggressive', 'permissive', 'off' ]
+class SafeHTMLFilter(QueryFilter):
+    """ All data in ECHO is stored in the same form as it was submitted. But
+    for safety and simplicity reasons it is usually sanitized before being returned
+    in search results. The level of sanitization can be set using this parameter.
+
+    The possible values are: [ 'aggressive', 'permissive', 'off' ]
+
+    ``aggressive`` - Removes most HTML tags except for the specific list of known
+    and safe ones. Retains embedded YouTube and Vimeo videos.
+
+    ``permissive`` - Removes content of tag <script></script> and removes other
+    explicitly dangerous tags (like iframe, frameset, etc).
+
+    ``off`` - Disables any changes to the items content.
+    """
+    def __init__(self, filter_values=[]):
+        super(MarkersFilter, self).__init__('safeHTML', filter_values=filter_values,
+                                         allowable_values=SAFE_HTML_FILTERS)
+
+# ======================================================================
 # User Filters: QueryFilter Subclasses with "user.*" applied.
 # ======================================================================
 
