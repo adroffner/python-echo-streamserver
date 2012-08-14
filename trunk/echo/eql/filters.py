@@ -187,7 +187,7 @@ class SafeHTMLFilter(QueryFilter):
     ``off`` - Disables any changes to the items content.
     """
     def __init__(self, filter_values=[]):
-        super(MarkersFilter, self).__init__('safeHTML', filter_values=filter_values,
+        super(SafeHTMLFilter, self).__init__('safeHTML', filter_values=filter_values,
                                          allowable_values=SAFE_HTML_FILTERS)
 
 # ======================================================================
