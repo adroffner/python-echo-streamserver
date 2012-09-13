@@ -96,7 +96,7 @@ class StreamServerError(Exception):
         self.errorMessage = json_error.get("errorMessage", None)
         Exception.__init__(self, "[%s] '%s'" % (self.errorCode, self.errorMessage))
 
-def _auth_basic_request(request, account=default_account):
+def _auth_basic_request(request, account):
     """ Add "Authorization Basic" header to the current request.
     This is the less-secure alternative to OAuth.
     """
@@ -133,7 +133,7 @@ class StreamServerRequest(urllib2.Request):
                 self.add_header(k, v)
         else:
             # Otherwise, fallback to Authorization Basic.
-            _auth_basic_request(self)
+            _auth_basic_request(self, account)
 
     def __unicode__(self):
         return "StreamServer API Request: %s" % (self.api_url)
