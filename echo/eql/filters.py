@@ -266,6 +266,30 @@ class ChildrenDepth(QueryFilter):
         return ' '.join(eql_list)
 
 # ======================================================================
+# Sort Order Filters:
+# ======================================================================
+
+ROOT_SORT_ORDERS = [
+    "likesDescending",
+    "repliesDescending",
+    "flagsDescending",
+    "chronological",
+    "reverseChronological"
+]
+class RootSortOrder(QueryFilter):
+    """ Controls the root node sort order for the query. """
+    def __init__(self, sort_order="reverseChronological"):
+        super(RootSortOrder, self).__init__('sortOrder', filter_values=[sort_order],
+                                            allowable_values=CHILDREN_SORT_ORDERS)
+
+CHILDREN_SORT_ORDERS = ["chronological", "reverseChronological"]
+class ChildrenSortOrder(QueryFilter):
+    """ Controls the sort order of the children retrieved from the query. """
+    def __init__(self, sort_order="reverseChronological"):
+        super(ChildrenSortOrder, self).__init__('childrenSortOrder', filter_values=[sort_order],
+                                                allowable_values=CHILDREN_SORT_ORDERS)
+
+# ======================================================================
 # Compound Query Filters: AND, OR
 # ======================================================================
 
