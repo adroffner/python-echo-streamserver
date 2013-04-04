@@ -2,6 +2,17 @@
 
 This is an object-oriented API for the Echo Query Language.
 Build queries from terms and produce a valid EQL query string.
+
+    q = Query("http://site.example.com/index.html", uri_filter='url')
+    q.add_filter(filters.ChildrenDepth(3))
+    q.add_filter(filters.TypeFilter('article'), negate=True)
+
+    EQL> "url:"http://site.example.com/index.html" children:3 -type:article"
+
+    q1 = Query("http://blog.example.com/movies//")
+    q1 - filters.TypeFilter(['article', 'note'])
+
+    EQL> "scope:"http://blog.example.com/movies/*" -type:article,note"
 """
 from echo.eql import filters
 
