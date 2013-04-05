@@ -167,28 +167,6 @@ class MarkersFilter(QueryFilter):
                                          allowable_values=MARKERS_FILTERS)
 
 # ======================================================================
-# Packaging Operators as Filters
-# ======================================================================
-
-class ItemsPerPageFilter(QueryFilter):
-    """ This is the packaging operator ``itemsPerPage``.
-    Use this filter to change the number of items returned by the query.
-    ``itemsPerPage`` is a positive integer, default 15.
-    The maximum ``itemsPerPage`` is 100 unless Echo configures it's servers otherwise.
-    """
-    def __init__(self, filter_values=15):
-        try:
-            itemsPerPage=int(filter_values)
-            if itemsPerPage < 0:
-                raise ValueError('not a positive integer')
-        except (ValueError, TypeError), e:
-            raise TypeError('Invalid itemsPerPage %r "%s".' % (filter_values, str(e)))
-        # NOTE: Convert itemsPerPage to string or TypeError occurs in
-        # superclass.
-        super(ItemsPerPageFilter, self).__init__('itemsPerPage',
-                                         filter_values=[str(itemsPerPage)])
-
-# ======================================================================
 # Safe HTML Filter
 # ======================================================================
 
@@ -358,8 +336,4 @@ if __name__ == "__main__":
     ## or_more_filter = type_filter | c
     or_more_filter = c | type_filter
     print "[Operator '|'] %s" % str(or_more_filter)
-
-    # ItemsPerPageFilter test:
-    items_per_page_filter = ItemsPerPageFilter(35)
-    print "ItemsPerPageFilter: %r" % items_per_page_filter
 
