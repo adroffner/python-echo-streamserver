@@ -68,6 +68,62 @@ The **Items API** supports **MUX**, or *multiplexed* requests. Several **count**
 >>> # Send Mux API requests.
 >>> r = items.mux(requests)
 
+Echo Query Language Builder
+===========================
+
+There is an *object-oriented* **Echo Query Language API** to build query strings. An **echo.eql.Query** object may be passed to the **Items API** method *search* rather than **EQL** text. Add **echo.eql.filters** to build on the query terms and produce a complete **EQL** query string.
+
+EQL Syntax Limitations
+----------------------
+
+This **EQL Builder** *does not guarantee* that the *whole* EQL text is valid. Each *term* is valid alone but **Echo StreamServer** still may reject the EQL string. **EQL syntax** rules limit how a **Query** and its **filters** can be constructed. Print the **echo.eql.Query** object to inspect its query string and *reorder* filter terms as necessary.
+
+Query Method API
+----------------
+
+Build an **echo.eql.Query** object using method calls. Add **echo.eql.filters.QueryFilter** objects to limit the results. Most **QueryFilter** objects can be *negated* to exclude the term.
+
+>>> from echo import eql
+>>> q = eql.Query("http://site.example.com/index.html", uri_filter='url')
+>>> q.add_filter(eql.filters.ChildrenDepth(3))
+>>> q.add_filter(eql.filters.TypeFilter('article'), negate=True)
+>>> print "EQL> ", q
+EQL> "url:"http://site.example.com/index.html" children:3 -type:article"
+
+Query Operator API
+------------------
+
+Add *filters* to an **echo.eql.Query** object using boolean operators. Read the **eql.filters** documentation for more details.
+
+>>> from echo import eql
+>>> q = eql.Query("http://www.example.com/movies//")
+>>> # Exclude articles and notes with (-).
+>>> q = q - eql.filters.TypeFilter(['article', 'note'])
+>>> # Allow children up to depth 2.
+>>> q + (eql.filters.ChildrenDepth(2))
+
+========  =======  ===========
+echo.eql.Query Operators
+------------------------
+operator  example  description
+========  =======  ===========
++         q + r    Add filter r to query q.
+-         q - r    Negate filter r on query q.
+&         q1 & q2  Combine queries q1 **and** q2.
+|         q1 | q2  Select query q1 **or** q2.
+========  =======  ===========
+
+========  =======  ===========
+echo.eql.filters Operators
+------------------------
+operator  example  description
+========  =======  ===========
++         q + r    Add filter r to query q.
+-         q - r    Negate filter r on query q.
+&         r1 & r2  Combine filters r1 **and** r2.
+|         r1 | r2  Apply filter r1 **or** r2.
+========  =======  ===========
+
 .. _Developers: http://aboutecho.com/developers/index.html
 .. _Account: http://wiki.aboutecho.com/w/page/36051644/Get%20Echo%20Test%20API%20Key
 .. _mux: http://wiki.aboutecho.com/w/page/32433803/API-method-mux#Responseformat
