@@ -71,7 +71,7 @@ The **Items API** supports **MUX**, or *multiplexed* requests. Several **count**
 Echo Query Language Builder
 ===========================
 
-There is an *object-oriented* **Echo Query Language API** to build query strings. An **echo.eql.Query** object may be passed to the **Items API** method *search* rather than **EQL** text. Add **echo.eql.filters** to build on the query terms and produce a complete **EQL** query string.
+There is an *object-oriented* **Echo Query Language API** to build query strings. An **echo.eql.Query** object may be passed to the **Items API** methods **eql.items.count** and **eql.items.search** rather than query text. Add **echo.eql.filters** to build on the query terms and produce a complete **EQL** query string.
 
 EQL Syntax Limitations
 ----------------------
@@ -93,7 +93,7 @@ EQL> "url:"http://site.example.com/index.html" children:3 -type:article"
 Query Operator API
 ------------------
 
-Add *filters* to an **echo.eql.Query** object using boolean operators. Read the **eql.filters** documentation for more details.
+Add *filters* to an **echo.eql.Query** object using boolean operators. Read the **echo.eql.filters** documentation for more details.
 
 >>> from echo import eql
 >>> q = eql.Query("http://www.example.com/movies//")
@@ -104,24 +104,23 @@ Add *filters* to an **echo.eql.Query** object using boolean operators. Read the 
 
 ========  =======  ===========
 echo.eql.Query Operators
-------------------------
+------------------------------
 operator  example  description
 ========  =======  ===========
-+         q + r    Add filter r to query q.
--         q - r    Negate filter r on query q.
-&         q1 & q2  Combine queries q1 **and** q2.
-|         q1 | q2  Select query q1 **or** q2.
+plus +    q + r    **Add** filter r to query q.
+minus -   q - r    **Negate** filter r on query q.
+and &     q1 & q2  Combine queries q1 **and** q2.
+pipe |    q1 | q2  Select query q1 **or** q2.
 ========  =======  ===========
 
 ========  =======  ===========
 echo.eql.filters Operators
-------------------------
+------------------------------
 operator  example  description
 ========  =======  ===========
-+         q + r    Add filter r to query q.
--         q - r    Negate filter r on query q.
-&         r1 & r2  Combine filters r1 **and** r2.
-|         r1 | r2  Apply filter r1 **or** r2.
+minus -   -r       **Negate** filter r.
+and &     r1 & r2  Combine filters r1 **and** r2.
+pipe |    r1 | r2  Apply filter r1 **or** r2.
 ========  =======  ===========
 
 .. _Developers: http://aboutecho.com/developers/index.html
