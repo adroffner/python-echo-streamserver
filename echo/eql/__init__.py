@@ -115,12 +115,44 @@ class CompoundQuery(object):
         self.query_a = query_a
         self.query_b = query_b
         self.operator_str = 'AND' if is_and else 'OR'
+        self.filter_list = []
 
     def __str__(self):
-        return "(%s %s %s)" % (str(self.query_a), self.operator_str, str(self.query_b))
+        eql_list = ["(%s %s %s)" % (str(self.query_a), self.operator_str, str(self.query_b))]
+        eql_list.extend([str(f) for f in self.filter_list])
+        return ' '.join(eql_list)
 
     def __repr__(self):
         return "Compound Query: %s" % str(self)
+
+    def add_filter(self, filter, negate=False):
+        """ Add another filter to this CompoundQuery object, as the right-most one in the list.
+        Also, use the operator methods, __add__ (+) and __sub__(-), to add a filter.
+        Filters include Packaging & Representation Operators in echo.eql.filters.
+        Programmers must add filters in the order desired.
+        """
+        if not isinstance(filter, filters.QueryFilter):
+            TypeError("Filter must be type %r" % filters.QueryFilter.__name__)
+        # Toggle f.negative flag based on composition.
+        if negate:
+            filter = filter.__neg__()
+        self.filter_list.append(filter)
+
+    def __add__(self,  filter):
+        """ Add a filter to this CompoundQuery.
+        query + filter
+        """
+        # Compose in-line, no deep copy.
+        self.add_filter(filter)
+        return self
+
+    def __sub__(self,  filter):
+        """ Add a negated filter to this CompoundQuery.
+        query - filter # CompoundQuery does not match this filter!
+        """
+        # Compose in-line, after a deep copy.
+        self.add_filter(filter, negate=True)
+        return self
 
 # ======================================================================
 # Representation Operators
