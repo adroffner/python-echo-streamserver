@@ -3,6 +3,7 @@ Use these as ``filters`` on the ``eql.Query`` object.
 """
 
 from echo.eql.filters import QueryFilter
+import datetime
 
 # ======================================================================
 # Packaging Operators as Filters
@@ -16,7 +17,7 @@ class ItemsPerPageFilter(QueryFilter):
     """
     def __init__(self, filter_values=15):
         try:
-            itemsPerPage=int(filter_values)
+            itemsPerPage = int(filter_values)
             if itemsPerPage < 0:
                 raise ValueError('not a positive integer')
         except (ValueError, TypeError), e:
@@ -39,16 +40,35 @@ class PageAfterFilter(QueryFilter):
     """
     def __init__(self, filter_values=None):
         try:
-            pageAfter=str(filter_values).split('|')
-            tstamp=pageAfter[0]
+            pageAfter = str(filter_values).split('|')
+            tstamp = pageAfter[0]
             float(tstamp)
-            likes_count=pageAfter[1]
+            likes_count = pageAfter[1]
             int(likes_count)
         except (IndexError, ValueError, TypeError), e:
             raise TypeError('Invalid pageAfter %r "%s".' % (filter_values, str(e)))
         super(PageAfterFilter, self).__init__('pageAfter',
                                               filter_values=[str(filter_values).strip()])
 
+# ======================================================================
+# Time Operators
+# ======================================================================
+
+class afterFilter(QueryFilter):
+    """ This is a filter that grabs all stories after a datetime """
+    def __init__(self, filter_value=None):
+        if type(filter_value) != datetime.datetime:
+            raise TypeError("Filter value must be a datetime")
+        datestring = filter_value.strftime("%Y-%m-%dT%H:%M:%S")
+        super(afterFilter, self).__init__('after', filter_values=['"%s"' % datestring,])
+
+class beforeFilter(QueryFilter):
+    """ This is a filter that grabs all stories before a datetime """
+    def __init__(self, filter_value=None):
+        if type(filter_value) != datetime.datetime:
+            raise TypeError("Filter value must be a datetime")
+        datestring = filter_value.strftime("%Y-%m-%dT%H:%M:%S")
+        super(beforeFilter, self).__init__('before', filter_values=['"%s"' % datestring,])
 
 # ======================================================================
 
@@ -61,4 +81,12 @@ if __name__ == "__main__":
     # PageAfterFilter test:
     page_after_filter = PageAfterFilter('  12345678.0123|31 ')
     print "PageAfterFilter: %r" % page_after_filter
+
+    # afterFilter test
+    after_filter = afterFilter(datetime.datetime.now())
+    print "afterFilter: %r" % after_filter
+
+    # beforeFilter test
+    before_filter = beforeFilter(datetime.datetime.now())
+    print "beforeFilter: %r" % before_filter
 
