@@ -37,18 +37,26 @@ class PageAfterFilter(QueryFilter):
     Make additional request with the ``pageAfter`` predicate and the ``nextPageAfter``
     value from the previous request to select the next portion of items.
     Make several requests until the search result returns an empty set of items.
+
+    This can work one of two ways, either by giving it a straight-up timestamp for
+    chronological searches, or by giving it "<timestamp>|<count>" for searches with
+    likes/replies/flags decending.
     """
-    def __init__(self, filter_values=None):
+    def __init__(self, filter_value=None):
         try:
-            pageAfter = str(filter_values).split('|')
-            tstamp = pageAfter[0]
-            float(tstamp)
-            likes_count = pageAfter[1]
-            int(likes_count)
+            if "|" in filter_value:
+                pageAfter = str(filter_value).split('|')
+                tstamp = pageAfter[0]
+                float(tstamp)
+                likes_count = pageAfter[1]
+                int(likes_count)
+                filter_value = "%s|%s" % (tstamp, likes_count)
+            else:
+                float(filter_value)
         except (IndexError, ValueError, TypeError), e:
-            raise TypeError('Invalid pageAfter %r "%s".' % (filter_values, str(e)))
+            raise TypeError('Invalid pageAfter %r "%s".' % (filter_value, str(e)))
         super(PageAfterFilter, self).__init__('pageAfter',
-                                              filter_values=[str(filter_values).strip()])
+                                              filter_values=[str(filter_value).strip()])
 
 # ======================================================================
 # Time Operators
