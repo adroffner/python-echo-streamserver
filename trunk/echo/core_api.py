@@ -109,10 +109,11 @@ class StreamServerRequest(urllib2.Request):
     This should also handle the authentication rules.
     """
     def __init__(self, api_method='submit', data_dict={}, http_method='POST', headers=HTTP_HEADERS,
-                 account=default_account, origin_req_host=None, unverifiable=False):
+                 account=default_account, origin_req_host=None, unverifiable=False,
+                 echo_host=ECHO_HOST, echo_version=ECHO_VERSION):
         self.data=urllib.urlencode(data_dict)
         post_data=None
-        self.api_url = 'https://%s/%s/%s' % (ECHO_HOST, ECHO_VERSION, api_method)
+        self.api_url = 'https://%s/%s/%s' % (echo_host, echo_version, api_method)
         if http_method == 'GET':
             self.api_url = "%s?%s" % (self.api_url, self.data)
             post_params=None
@@ -142,7 +143,7 @@ class StreamServerRequest(urllib2.Request):
 # ======================================================================
 
 def send_request(api_method, param_d={}, http_post=False, is_json=True,
-                 account=default_account):
+                 account=default_account, echo_host=ECHO_HOST, echo_version=ECHO_HOST):
     """ Send a StreamServer API HTTP Request to ECHO.
     When is_json=True, the default, the document is parsed from JSON.
     The document is returned as a string when is_json=False.
@@ -153,7 +154,7 @@ def send_request(api_method, param_d={}, http_post=False, is_json=True,
     try:
         req = StreamServerRequest(api_method=api_method, data_dict=param_d,
                                   http_method=('POST' if http_post else 'GET'),
-                                  account=account)
+                                  account=account, echo_host=echo_host, echo_version=echo_versio)
         logging.debug("%s API URL: %r" % (api_method, req.api_url))
         logging.debug("StreamServerRequest HTTP Headers:\n%s" % pformat(req.headers, indent=4))
 
@@ -193,8 +194,10 @@ class EchoClient(object):
     """ Base EchoClient associates an Account with each API, e.g. Items API.
     A Client object is needed to use a non-default Account.
     """
-    def __init__(self, account=default_account):
+    def __init__(self, account=default_account, echo_host=ECHO_HOST, echo_version=ECHO_VERSION):
         self._account = account
+        self._echo_host = echo_host
+        self._echo_version = echo_version
 
     _default_client = None
     @classmethod
@@ -213,7 +216,8 @@ class EchoClient(object):
         This is an internal function to the client.
         """
         return send_request(api_method, param_d=param_d, http_post=http_post,
-                            is_json=is_json, account=self._account)
+                            is_json=is_json, account=self._account, echo_host=self._echo_host,
+                            echo_version=self._echo_version)
 
     def __str__(self):
         return "%s.%s: %s" % (self.__class__.__module__, self.__class__.__name__,
