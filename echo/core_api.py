@@ -154,7 +154,7 @@ def send_request(api_method, param_d={}, http_post=False, is_json=True,
     try:
         req = StreamServerRequest(api_method=api_method, data_dict=param_d,
                                   http_method=('POST' if http_post else 'GET'),
-                                  account=account, echo_host=echo_host, echo_version=echo_versio)
+                                  account=account, echo_host=echo_host, echo_version=echo_version)
         logging.debug("%s API URL: %r" % (api_method, req.api_url))
         logging.debug("StreamServerRequest HTTP Headers:\n%s" % pformat(req.headers, indent=4))
 
