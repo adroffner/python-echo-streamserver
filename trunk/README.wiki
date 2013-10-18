@@ -21,7 +21,7 @@ except StreamServerError, e:
 
 ===Default Account===
 
-The *Default Account* is part of the *echo.settings* module. Set the *Echo* _appkey_ and _secret_ [http://wiki.aboutecho.com/w/page/36051644/Get%20Echo%20Test%20API%20Key codes] for your account there.
+The *Default Account* is part of the *echo.settings* module. Set the *Echo* _appkey_ and _secret_ [http://wiki.aboutecho.com/w/page/67081494/StreamServer%20-%20Dashboard] for your account there.
 
 {{{
 /usr/lib/python2.x/site-packages/echo/settings.py
