@@ -20,7 +20,7 @@ The *function* interface provides each **API** as a simple *module* or *package*
 Default Account
 ---------------
 
-The **Default Account** is part of the **echo.settings** module. Set the **Echo** *appkey* and *secret* Account_ codes there.
+The **Default Account** is part of the **echo.settings** module. Set the **Echo** *appkey* and *secret* API_Keys_ there.
 
 ::
     /usr/lib/python2.x/site-packages/echo/settings.py
@@ -124,6 +124,6 @@ pipe |    r1 | r2  Apply filter r1 **or** r2.
 ========  =======  ===========
 
 .. _Developers: http://aboutecho.com/developers/index.html
-.. _Account: http://wiki.aboutecho.com/w/page/36051644/Get%20Echo%20Test%20API%20Key
+.. _API_Keys: http://wiki.aboutecho.com/w/page/67081494/StreamServer%20-%20Dashboard
 .. _mux: http://wiki.aboutecho.com/w/page/32433803/API-method-mux#Responseformat
 
