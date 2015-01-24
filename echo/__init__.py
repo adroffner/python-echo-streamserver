@@ -1,7 +1,7 @@
 """ Echo StreamServer API
 
 This is a Python version of the Echo StreamServer API.
-http://aboutecho.com/developers/index.html
+http://echoplatform.com/streamserver/docs/rest-api/
 
     feeds - Feeds API
     items - Items API
@@ -12,7 +12,7 @@ Most API methods raise the echo.StreamServerError exception.
 This indicates a server-side error, or malformed request.
 """
 
-__version__ = "0.83"
+__version__ = "0.84"
 __author__ = "Andrew Droffner"
 
 # Import Public APIs: modules and packages

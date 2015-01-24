@@ -20,7 +20,7 @@ The *function* interface provides each **API** as a simple *module* or *package*
 Default Account
 ---------------
 
-The **Default Account** is part of the **echo.settings** module. Set the **Echo** *appkey* and *secret* API_Keys_ there.
+The **Default Account** is part of the **echo.settings** module. Set the **Echo** *appkey* and *secret* API_Keys there.
 
 ::
     /usr/lib/python2.x/site-packages/echo/settings.py
@@ -71,7 +71,7 @@ The **Items API** supports **MUX**, or *multiplexed* requests. Several **count**
 Echo Query Language Builder
 ===========================
 
-There is an *object-oriented* **Echo Query Language API** to build query strings. An **echo.eql.Query** object may be passed to the **Items API** methods **eql.items.count** and **eql.items.search** rather than query text. Add **echo.eql.filters** to build on the query terms and produce a complete **EQL** query string.
+There is an *object-oriented* **Echo Query Language API** to build query strings. An **echo.eql.Query** object may be passed to the **Items API** methods **eql.items.count** and **eql.items.search** rather than query text. Add **echo.eql.filters** to build on the query terms and produce a complete EQL_ query string.
 
 EQL Syntax Limitations
 ----------------------
@@ -123,7 +123,7 @@ and &     r1 & r2  Combine filters r1 **and** r2.
 pipe |    r1 | r2  Apply filter r1 **or** r2.
 ========  =======  ===========
 
-.. _Developers: http://aboutecho.com/developers/index.html
-.. _API_Keys: http://wiki.aboutecho.com/w/page/67081494/StreamServer%20-%20Dashboard
-.. _mux: http://wiki.aboutecho.com/w/page/32433803/API-method-mux#Responseformat
+.. _Developers: http://echoplatform.com/streamserver/docs/rest-api/
+.. _mux: http://echoplatform.com/streamserver/docs/rest-api/other-api/mux/
+.. _EQL: http://echoplatform.com/streamserver/docs/features/echo-query-language/
 
