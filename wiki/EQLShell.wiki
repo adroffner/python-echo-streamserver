@@ -2,7 +2,7 @@
 
 =EQL Shell=
 
-The *EQL Shell* is a _command line_ script to send [http://wiki.aboutecho.com/Echo+Query+Language+-+Simple+Guide Echo Query Language] requests to the *StreamServer*. It _always_ uses the *Default Account*, as shown under *Account:* heading on start-up.
+The *EQL Shell* is a _command line_ script to send [http://echoplatform.com/streamserver/docs/features/echo-query-language/ Echo Query Language] requests to the *StreamServer*. It _always_ uses the *Default Account*, as shown under *Account:* heading on start-up.
 
 {{{
 $ /usr/bin/eql_shell
