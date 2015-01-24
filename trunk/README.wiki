@@ -1,8 +1,8 @@
-#summary Echo StreamServer API Overview
+﻿#summary Echo StreamServer API Overview
 
 =Echo StreamServer API=
 
-This is a Python version of the *Echo StreamServer API*. See the [http://aboutecho.com/developers/index.html Echo Documentation].
+This is a Python version of the *Echo StreamServer API*. See the [http://echoplatform.com/streamserver/docs/rest-api/ Echo Documentation].
 
 ==Function Interface==
 
@@ -21,7 +21,7 @@ except StreamServerError, e:
 
 ===Default Account===
 
-The *Default Account* is part of the *echo.settings* module. Set the *Echo* _appkey_ and _secret_ [http://wiki.aboutecho.com/w/page/67081494/StreamServer%20-%20Dashboard API Keys] for your account there.
+The *Default Account* is part of the *echo.settings* module. Set the *Echo* _appkey_ and _secret_ API Keys for your account there.
 
 {{{
 /usr/lib/python2.x/site-packages/echo/settings.py
@@ -59,7 +59,7 @@ client = feeds.Client(account=other_account)
 
 =MUX Requests=
 
-The *Items API* supports *MUX*, or _multiplexed_ requests. Several *count* and *search* requests can be combined into one *REST* call. The *items.mux* method sends a list of *MuxRequest* objects to *Echo*. See the *Echo* [http://wiki.aboutecho.com/w/page/32433803/API-method-mux#Responseformat documentation] for the output format.
+The *Items API* supports *MUX*, or _multiplexed_ requests. Several *count* and *search* requests can be combined into one *REST* call. The *items.mux* method sends a list of *MuxRequest* objects to *Echo*. See the *Echo* [http://echoplatform.com/streamserver/docs/rest-api/other-api/mux/ documentation] for the output format.
 
 {{{
 from echo import items
@@ -80,4 +80,12 @@ requests = [ search, count ]
 # Send Mux API requests.
 r = items.mux(requests)
 }}}
+
+=Echo Query Language Builder=
+
+There is an *object-oriented* *Echo Query Language API* to build query strings. An *echo.eql.Query* object may be passed to the *Items API* methods *eql.items.count* and *eql.items.search* rather than query text. Add *echo.eql.filters* to build on the query terms and produce a complete [http://echoplatform.com/streamserver/docs/features/echo-query-language/ EQL] query string.
+
+==EQL Syntax Limitations==
+
+This *EQL Builder* does not guarantee that the *whole* EQL text is valid. Each *term* is valid alone but *Echo StreamServer* still may reject the EQL string. *EQL syntax* rules limit how a *Query* and its *filters* can be constructed. Print the *echo.eql.Query* object to inspect its query string and *reorder* filter terms as necessary.
 

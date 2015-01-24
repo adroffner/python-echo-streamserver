@@ -82,8 +82,9 @@ def whoami(session_id):
 if __name__ == "__main__":
     from pprint import pprint
 
-    # Get and show an existing user's indetityURL.
-    user_d = get("http://connect-uat.nj.com/user/amurphre/index.html", raise_not_found=True)
+    # Get and show an existing user's identityURL.
+    ## user_d = get("http://connect-uat.nj.com/user/amurphre/index.html", raise_not_found=True)
+    user_d = get("http://andrew-droffner.echostudio.co/", raise_not_found=True)
     pprint(user_d, indent=4)
 
     # Show the user JSON's poco account #0.
