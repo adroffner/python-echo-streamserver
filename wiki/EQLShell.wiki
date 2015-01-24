@@ -31,7 +31,7 @@ COUNT>
 
 ==Items API==
 
-The *Items API* queries accept an [http://wiki.aboutecho.com/Echo+Query+Language+-+Simple+Guide EQL] text string. Type either *count* or *search* to toggle the *EQL Shell* prompt to that state.
+The *Items API* queries accept an [http://echoplatform.com/streamserver/docs/features/echo-query-language/ EQL] text string. Type either *count* or *search* to toggle the *EQL Shell* prompt to that state.
 
 {{{
 SEARCH> url:http://www.example.com/index.html
