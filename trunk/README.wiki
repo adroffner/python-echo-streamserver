@@ -81,11 +81,3 @@ requests = [ search, count ]
 r = items.mux(requests)
 }}}
 
-=Echo Query Language Builder=
-
-There is an *object-oriented* *Echo Query Language API* to build query strings. An *echo.eql.Query* object may be passed to the *Items API* methods *eql.items.count* and *eql.items.search* rather than query text. Add *echo.eql.filters* to build on the query terms and produce a complete [http://echoplatform.com/streamserver/docs/features/echo-query-language/ EQL] query string.
-
-==EQL Syntax Limitations==
-
-This *EQL Builder* does not guarantee that the *whole* EQL text is valid. Each *term* is valid alone but *Echo StreamServer* still may reject the EQL string. *EQL syntax* rules limit how a *Query* and its *filters* can be constructed. Print the *echo.eql.Query* object to inspect its query string and *reorder* filter terms as necessary.
-
